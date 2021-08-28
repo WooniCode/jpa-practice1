@@ -1,7 +1,7 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.repository.MemberRepository;
+import jpabook.jpashop.repository.MemberRepositoryOld;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,8 @@ import static org.junit.Assert.*;
 public class MemberServiceTest {
 
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepositoryOld memberRepositoryOld;
     @Autowired EntityManager em;
 
     @Test
@@ -34,7 +35,7 @@ public class MemberServiceTest {
 
         //then
         em.flush();
-        Assert.assertEquals(member, memberRepository.findOne(savedId));
+        Assert.assertEquals(member, memberRepositoryOld.findOne(savedId));
     }
 
     @Test(expected = IllegalStateException.class)
